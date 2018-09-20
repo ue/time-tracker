@@ -34,8 +34,7 @@ export default class HeaderView extends Component {
    * ------------------------------------------------ */
 
   _getClassName = () => {
-    //const { isTimerActive } = this.props;
-    const isTimerActive = false;
+    const { isTimerActive } = this.props;
 
     let className = 'header';
 

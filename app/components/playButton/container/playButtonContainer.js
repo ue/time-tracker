@@ -1,9 +1,10 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import PlayButtonView from '../view/playButtonView';
 
-export default class PlayButtonContainer extends Component {
+class PlayButtonContainer extends Component {
   /* Props
    * ------------------------------------------------
    *   @prop { string }        title       - It just string for title name.
@@ -19,9 +20,19 @@ export default class PlayButtonContainer extends Component {
    * ------------------------------------------------ */
 
   render() {
-    return <PlayButtonView isTimerActive={false} {...this.props} />;
+    const { isTimerActive } = this.props;
+
+    return <PlayButtonView isTimerActive={isTimerActive} {...this.props} />;
   }
 
   /* Component Functions
    * ------------------------------------------------ */
 }
+
+function mapStateToProps(state) {
+  return {
+    isTimerActive: state.timer.isTimerActive
+  };
+}
+
+export default connect(mapStateToProps)(PlayButtonContainer);

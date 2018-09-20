@@ -1,11 +1,15 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
 import { DurationView } from '../';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { IS_TIMER_ACTIVE } from '../../../constants/timer';
+import * as TimerActions from '../../../actions/timer';
 
-export default class DurationContainer extends Component {
+class DurationContainer extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { string }        title       - It just string for title name.
+   *   @prop { string }        isTimerActive       - It just string for title name.
    */
 
   constructor(props) {
@@ -18,9 +22,37 @@ export default class DurationContainer extends Component {
    * ------------------------------------------------ */
 
   render() {
-    return <DurationView {...this.props} />;
+    const { isTimerActive } = this.props;
+    return (
+      <DurationView
+        handleTimerOnStart={this._handleTimerOnStart}
+        isTimerActive={isTimerActive}
+        {...this.props}
+      />
+    );
   }
 
   /* Component Functions
    * ------------------------------------------------ */
+  _handleTimerOnStart = () => {
+    const { isTimerActive, setIsTimerActive } = this.props;
+    console.log(this.props.isTimerActive);
+
+    setIsTimerActive(!isTimerActive ? true : !isTimerActive);
+  };
 }
+
+function mapStateToProps(state) {
+  return {
+    isTimerActive: state.timer.isTimerActive
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(TimerActions, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DurationContainer);

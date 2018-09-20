@@ -6,7 +6,9 @@ import { PlayButton } from '../../playButton';
 export default class DurationView extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { boolean }        isTimerActive       - If user press the play button and timer keep going.
+   *   @prop { funtion }        handleTimerOnStart       - For handle when timer start.
+   *   @prop { boolean }        isTimerActive            - Timer active information.
+   *
    */
 
   constructor(props) {
@@ -18,9 +20,17 @@ export default class DurationView extends Component {
   /* Life Cycle Functions
    * ------------------------------------------------ */
 
+  /* Component Functions
+   * ------------------------------------------------ */
+
+  _handlePlayButtonClicked = () => {
+    const { handleTimerOnStart } = this.props;
+
+    handleTimerOnStart();
+  };
+
   render() {
-    // const { isTimerActive } = this.props;
-    const isTimerActive = true;
+    const { isTimerActive } = this.props;
 
     return (
       <div className="duration-wrapper">
@@ -32,11 +42,8 @@ export default class DurationView extends Component {
         <DividerView isTimerActive={isTimerActive} />
         <DigitView isTimerActive={isTimerActive} />
         <DigitView isTimerActive={isTimerActive} />
-        <PlayButton />
+        <PlayButton handleOnClick={() => this._handlePlayButtonClicked()} />
       </div>
     );
   }
-
-  /* Component Functions
-   * ------------------------------------------------ */
 }

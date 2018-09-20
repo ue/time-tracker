@@ -33,7 +33,7 @@ export default class PlayButtonView extends Component {
           // style={{
           //   backgroundColor: running ? '#60bf77' : '#6a849f'
           // }}
-          onClick={this._handlePlayButtonOnClick()}
+          onClick={() => this._handlePlayButtonOnClick()}
         >
           {this._getPlayButtonIcon()}
         </a>
@@ -44,13 +44,17 @@ export default class PlayButtonView extends Component {
   /* Component Functions
    * ------------------------------------------------ */
 
-  _handlePlayButtonOnClick = () => {};
+  _handlePlayButtonOnClick = () => {
+    const { handleOnClick } = this.props;
+
+    handleOnClick && handleOnClick();
+  };
 
   _getPlayButtonIcon = () => {
     const { isTimerActive } = this.props;
     let IconSvg = PlayIcon;
 
-    !isTimerActive ? (IconSvg = StopIcon) : null;
+    isTimerActive ? (IconSvg = StopIcon) : null;
 
     return <IconSvg className="play-button-icon" />;
   };

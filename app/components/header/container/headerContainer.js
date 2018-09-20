@@ -1,8 +1,9 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { HeaderView } from '../';
 
-export default class HeaderContainer extends Component {
+class HeaderContainer extends Component {
   /* Props
    * ------------------------------------------------
    *   @prop { string }        title       - It just string for title name.
@@ -18,9 +19,18 @@ export default class HeaderContainer extends Component {
    * ------------------------------------------------ */
 
   render() {
-    return <HeaderView {...this.props} />;
+    const { isTimerActive } = this.props;
+    return <HeaderView isTimerActive={isTimerActive} {...this.props} />;
   }
 
   /* Component Functions
    * ------------------------------------------------ */
 }
+
+function mapStateToProps(state) {
+  return {
+    isTimerActive: state.timer.isTimerActive
+  };
+}
+
+export default connect(mapStateToProps)(HeaderContainer);
