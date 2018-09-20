@@ -1,0 +1,20 @@
+.play-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  background-color: #6a849f;
+}
+
+.active-play-button{
+  background-color: #60bf77;
+}
+
+// .play-button a:active, a:focus {
+//   outline: 0;
+//   border: none;
+// }

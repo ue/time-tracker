@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 3em;
+  align-items: center;
+  padding: 0 0.3em;
+  
+  .title {
+    color: white;
+    font-size: 12pt;
+  }
+
+  img {
+    padding: 0 0.3em;
+  }
+}
+
+.is-active-header-color {
+  background-color: #60bf77;
+}
+
+.default-header-color {
+  background-color: #6a849f;
+}

@@ -1,0 +1,42 @@
+.duration-wrapper{
+  height: 110px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Mono', monospace;
+}
+.divider {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: #6a849f;
+  }
+  
+  .isDividerActive {
+    color:#60bf77;
+  }
+}
+.digit {
+  height: 40px;
+  width: 33px;
+  background-color: #6a849f;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1px;
+
+  span {
+    color: white;
+    font-size: 19pt;
+  }
+}
+
+.isDigitActive{
+  background-color: #60bf77;
+}

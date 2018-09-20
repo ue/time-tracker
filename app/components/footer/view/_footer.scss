@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  padding: 0 10px;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px;
+  background-color: #edf0f7;
+  width: 100vw;
+  bottom: 0;
+  position: fixed;
+
+  p {
+    display: flex;
+    color: #6a849f;
+    font-size: 10pt;
+    padding: 0;
+    margin: 1px
+  }
+
+  .company-time {
+  }
+
+  .passing-time{
+    font-weight: bold;
+  }
+}
