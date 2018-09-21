@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { DurationView } from '../';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { IS_TIMER_ACTIVE } from '../../../constants/timer';
 import * as TimerActions from '../../../actions/timer';
 
 class DurationContainer extends Component {
