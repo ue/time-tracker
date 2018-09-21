@@ -18,24 +18,60 @@ export default class DurationView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      hours: '00',
+      seconds: '00',
+      minutes: '00'
+    };
+
+    this.timer = null;
   }
 
   /* Life Cycle Functions
    * ------------------------------------------------ */
+  componentDidMount() {
+    const { isTimerActive } = this.props;
 
+    isTimerActive && this._incrementTimer();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isTimerActive } = this.props;
+
+    if (prevProps.isTimerActive !== isTimerActive && isTimerActive) {
+      this._incrementTimer();
+    } else {
+      clearTimeout(this.timer);
+    }
+  }
   /* Component Functions
    * ------------------------------------------------ */
 
+  _incrementTimer() {
+    const { startTime } = this.props;
+
+    this.timer = setTimeout(() => {
+      const { hours, seconds, minutes } = getSeperatedTime(startTime);
+
+      this.setState({
+        hours,
+        seconds,
+        minutes
+      });
+
+      this._incrementTimer();
+    }, 1000);
+  }
+
   _handlePlayButtonClicked = () => {
     const { handleTimerOnStart } = this.props;
-
+    // clearTimeout(this.timer);
     handleTimerOnStart();
   };
 
   render() {
     const { isTimerActive, startTime } = this.props;
-    const { hours, seconds, minutes } = getSeperatedTime(startTime);
+    const { hours, seconds, minutes } = this.state;
 
     return (
       <div className="duration-wrapper">

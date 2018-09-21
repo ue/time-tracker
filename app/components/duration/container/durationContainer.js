@@ -47,9 +47,9 @@ class DurationContainer extends Component {
     setIsTimerActive(!isTimerActive ? true : !isTimerActive);
 
     // If there is no start time data if so user first clicked the play button.
-    if (!startTime) {
-      setStartTime(getMoment());
-    }
+    // if (!startTime) {
+    // }
+    setStartTime(getMoment());
   };
 }
 
