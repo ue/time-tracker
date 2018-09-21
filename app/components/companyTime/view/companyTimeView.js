@@ -1,6 +1,8 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
-import moment from 'moment';
+
+// Utilities
+import { getFormatedLocalTime } from '../../../utilities/time';
 
 export default class CompanyTimeView extends Component {
   /* Props
@@ -26,21 +28,10 @@ export default class CompanyTimeView extends Component {
     clearInterval(this.intervalID);
   }
 
-  render() {
-    const { description } = this.props;
-    return <span>{this._getFormatedTime()} GMT</span>;
-  }
-
   /* Component Functions
-   * ------------------------------------------------ */
-  _getFormatedTime = () => {
-    const { time } = this.state;
+ * ------------------------------------------------ */
 
-    return moment(time)
-      .local()
-      .format('h:mm A zzZ');
-  };
-
+  // The company time should came from data as much as I know. there for I set it randomly
   randomDate(start, end) {
     return new Date(
       start.getTime() + Math.random() * (end.getTime() - start.getTime())
@@ -52,4 +43,11 @@ export default class CompanyTimeView extends Component {
       time: this.state.time
     });
   };
+
+  render() {
+    const { description } = this.props;
+    const { time } = this.state;
+
+    return <span>{getFormatedLocalTime(time)} GMT</span>;
+  }
 }

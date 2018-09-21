@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TimerActions from '../../../actions/timer';
 
+// Utilities
+import { getMoment, getSeperatedTime } from '../../../utilities/time';
+
 class DurationContainer extends Component {
   /* Props
    * ------------------------------------------------
@@ -34,16 +37,26 @@ class DurationContainer extends Component {
   /* Component Functions
    * ------------------------------------------------ */
   _handleTimerOnStart = () => {
-    const { isTimerActive, setIsTimerActive } = this.props;
-    console.log(this.props.isTimerActive);
+    const {
+      isTimerActive,
+      setIsTimerActive,
+      setStartTime,
+      startTime
+    } = this.props;
 
     setIsTimerActive(!isTimerActive ? true : !isTimerActive);
+
+    // If there is no start time data if so user first clicked the play button.
+    if (!startTime) {
+      setStartTime(getMoment());
+    }
   };
 }
 
 function mapStateToProps(state) {
   return {
-    isTimerActive: state.timer.isTimerActive
+    isTimerActive: state.timer.isTimerActive,
+    startTime: state.timer.startTime
   };
 }
 

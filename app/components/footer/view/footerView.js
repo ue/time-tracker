@@ -23,15 +23,21 @@ export default class FooterView extends Component {
    * ------------------------------------------------ */
 
   render() {
-    const { startTime, companyTime } = this.props;
+    const { startTime, companyTime, isTimerActive } = this.props;
 
     return (
       <div className="footer">
         <p className="passing-time">
-          Worked Today: <Timer startTime={startTime} />
+          Worked Today:{' '}
+          <Timer isTimerActive={isTimerActive} startTime={startTime} />
         </p>
         <p className="company-time">
-          Company Time: <CompanyTime companyTime={companyTime} />
+          Company Time:{' '}
+          <CompanyTime
+            isTimerActive={isTimerActive}
+            companyTime={companyTime}
+            startTime={startTime}
+          />
         </p>
       </div>
     );

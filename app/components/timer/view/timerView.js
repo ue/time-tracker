@@ -26,30 +26,30 @@ export default class TimerView extends Component {
    * ------------------------------------------------ */
 
   componentDidMount() {
-    this._incrementTimer();
+    const { isTimerActive } = this.props;
+    isTimerActive && this._incrementTimer();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isTimerActive } = this.props;
+
+    if (prevProps.isTimerActive !== isTimerActive && isTimerActive) {
+      this._incrementTimer();
+    } else {
+      clearTimeout(this.timer);
+    }
   }
 
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
 
-  render() {
-    const { time, format } = this.state;
-
-    return (
-      <span>
-        {this.state.time}
-        {format}
-      </span>
-    );
-  }
-
   /* Component Functions
-   * ------------------------------------------------ */
+  * ------------------------------------------------ */
   _incrementTimer() {
     this.timer = setTimeout(() => {
       const difference = moment().diff(this.state.startTime);
-      const format = difference >= 1000 * 60 * 60 ? 'H:mm:ss' : 'mm';
+      const format = difference >= 1000 * 60 * 60 ? 'H:mm:ss' : 'mm:ss';
       const time = moment.utc(difference).format(format);
 
       this.setState({
@@ -67,4 +67,20 @@ export default class TimerView extends Component {
     }
     return 'm';
   };
+
+  _getRenderItem = () => {
+    const { time, format } = this.state;
+
+    let renderItem = '00s';
+
+    if (time) {
+      renderItem = time + format;
+    }
+
+    return renderItem;
+  };
+
+  render() {
+    return <span>{this._getRenderItem()}</span>;
+  }
 }

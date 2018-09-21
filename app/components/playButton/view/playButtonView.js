@@ -30,9 +30,6 @@ export default class PlayButtonView extends Component {
       <Fragment>
         <a
           className={this._getPlayButtonClassName()}
-          // style={{
-          //   backgroundColor: running ? '#60bf77' : '#6a849f'
-          // }}
           onClick={() => this._handlePlayButtonOnClick()}
         >
           {this._getPlayButtonIcon()}

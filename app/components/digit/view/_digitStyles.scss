@@ -1,0 +1,19 @@
+.digit {
+  height: 40px;
+  width: 33px;
+  background-color: #6a849f;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1px;
+
+  span {
+    color: white;
+    font-size: 19pt;
+  }
+}
+
+.isDigitActive{
+  background-color: #60bf77;
+}

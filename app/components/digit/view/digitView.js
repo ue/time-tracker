@@ -1,8 +1,8 @@
 import React from 'react';
 
-const DigitView = ({ isTimerActive }) => (
+const DigitView = ({ isTimerActive, value }) => (
   <div key="12" className={isTimerActive ? 'digit isDigitActive' : 'digit'}>
-    <span>0</span>
+    <span>{value}</span>
   </div>
 );
 

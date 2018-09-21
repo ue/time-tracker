@@ -1,8 +1,12 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
 import DividerView from './dividerView';
-import DigitView from './digitView';
+import DigitsView from './digitsView';
 import { PlayButton } from '../../playButton';
+
+// Utilities
+import { getSeperatedTime } from '../../../utilities/time';
+
 export default class DurationView extends Component {
   /* Props
    * ------------------------------------------------
@@ -30,18 +34,16 @@ export default class DurationView extends Component {
   };
 
   render() {
-    const { isTimerActive } = this.props;
+    const { isTimerActive, startTime } = this.props;
+    const { hours, seconds, minutes } = getSeperatedTime(startTime);
 
     return (
       <div className="duration-wrapper">
-        <DigitView isTimerActive={isTimerActive} />
-        <DigitView isTimerActive={isTimerActive} />
+        <DigitsView value={hours} isTimerActive={isTimerActive} />
         <DividerView isTimerActive={isTimerActive} />
-        <DigitView isTimerActive={isTimerActive} />
-        <DigitView isTimerActive={isTimerActive} />
+        <DigitsView value={minutes} isTimerActive={isTimerActive} />
         <DividerView isTimerActive={isTimerActive} />
-        <DigitView isTimerActive={isTimerActive} />
-        <DigitView isTimerActive={isTimerActive} />
+        <DigitsView value={seconds} isTimerActive={isTimerActive} />
         <PlayButton handleOnClick={() => this._handlePlayButtonClicked()} />
       </div>
     );

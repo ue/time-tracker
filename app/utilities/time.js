@@ -1,15 +1,28 @@
-/* eslint import/prefer-default-export: 0 */
-// @flow
+// Moment.js
 import moment from 'moment';
 
-export const pad = (num: number, size: number = 2) =>
-  `000000000${num}`.substr(-size);
+export const getMoment = () => moment();
 
-export const dissectDuration = (milliseconds: number) => {
-  const duration = moment.duration(milliseconds);
+export const getFormatedLocalTime = time =>
+  moment(time)
+    .local()
+    .format('h:mm A zzZ');
+
+export const getSeperatedTime = startTime => {
+  const difference = moment().diff(startTime);
+  const duration = moment.duration(difference);
+
+  const seconds = makeDigits(duration.seconds());
+  const minutes = makeDigits(duration.minutes());
+  const hours = makeDigits(duration.hours());
+
   return {
-    seconds: duration.seconds(),
-    minutes: duration.minutes(),
-    hours: duration.hours()
+    seconds,
+    minutes,
+    hours
   };
 };
+
+const lengthCheck = val => val.toString().length;
+
+const makeDigits = val => (lengthCheck(val) < 2 ? `0${val}` : val);
