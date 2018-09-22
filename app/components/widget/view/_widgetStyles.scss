@@ -1,6 +1,6 @@
 .container {
   margin: 0;
-  background-color: #2b405b;
+  background-color: $medium-blue-color;
   height: 36px;
   width: 145px;
   display: flex;
@@ -49,7 +49,7 @@
   width: 15px;
   height: 15px;
   border-radius: 15px;
-  background-color: #10223a;
+  background-color: $dark-blue-color;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -69,6 +69,6 @@
   margin-left: 16px;
  }
  .duration p {
-   color: white;
+   color: $white-color;
    font-size: 12px;
  }

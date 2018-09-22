@@ -8,8 +8,8 @@ export const windows: Windows = {};
 export const createMainWindow = () => {
   const main = new BrowserWindow({
     show: false,
-    width: 550,
-    height: 225,
+    width: 520,
+    height: 220,
     resizable: false
   });
 

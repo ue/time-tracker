@@ -1,23 +1,20 @@
 .footer {
   display: flex;
-  padding: 0 10px;
+  padding: $bar-padding;
   flex-direction: column;
   justify-content: center;
-  height: 50px;
-  background-color: #edf0f7;
-  width: 100vw;
+  height: $full-height / 4;
+  background-color: $light-gray-color;
+  width: $full-width;
   bottom: 0;
   position: fixed;
 
   p {
     display: flex;
-    color: #6a849f;
-    font-size: 10pt;
+    color: $default-color;
+    font-size: $footer-font-size;
     padding: 0;
     margin: 1px
-  }
-
-  .company-time {
   }
 
   .passing-time{

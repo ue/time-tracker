@@ -1,6 +1,6 @@
 .duration-wrapper{
-  height: 110px;
-  background-color: white;
+  height: $full-height / 2;
+  background-color: $white-color;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -8,35 +8,35 @@
   font-family: 'Roboto Mono', monospace;
 }
 .divider {
-  background-color: white;
+  background-color: $white-color;
   display: flex;
   justify-content: center;
   align-items: center;
 
   p {
-    color: #6a849f;
+    color: $default-color;
   }
   
   .isDividerActive {
-    color:#60bf77;
+    color: $active-color;
   }
 }
 .digit {
-  height: 40px;
-  width: 33px;
-  background-color: #6a849f;
-  border-radius: 5px;
+  height: $digit-height;
+  width: $digit-width;
+  background-color: $default-color;
+  border-radius: $border-radius;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 1px;
 
   span {
-    color: white;
-    font-size: 19pt;
+    color: $white-color;
+    font-size: $digit-font-size;
   }
 }
 
 .isDigitActive{
-  background-color: #60bf77;
+  background-color: $active-color;
 }

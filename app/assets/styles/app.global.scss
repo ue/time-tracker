@@ -1,0 +1,17 @@
+
+// Variables
+@import "./variables/colors";
+@import "./variables/sizes";
+
+// Layout
+@import "./core/global";
+
+// Global
+@import "./core/layout";
+
+// Components
+@import "../../components/header/view/header";
+@import "../../components/footer/view/footer";
+@import "../../components/duration/view/duration";
+@import "../../components/playButton/view/playButton";
+@import "../../components/widget/view/widgetStyles";
