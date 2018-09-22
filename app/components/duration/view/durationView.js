@@ -53,13 +53,16 @@ export default class DurationView extends Component {
     this.timer = setTimeout(() => {
       const { hours, seconds, minutes } = getSeperatedTime(startTime);
 
-      this.setState({
-        hours,
-        seconds,
-        minutes
-      });
-
-      this._incrementTimer();
+      this.setState(
+        {
+          hours,
+          seconds,
+          minutes
+        },
+        () => {
+          this._incrementTimer();
+        }
+      );
     }, 1000);
   }
 

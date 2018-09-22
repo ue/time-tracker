@@ -6,12 +6,20 @@ import { bindActionCreators } from 'redux';
 import * as TimerActions from '../../../actions/timer';
 
 // Utilities
-import { getMoment, getSeperatedTime } from '../../../utilities/time';
+import {
+  getMoment,
+  getSeperatedTime,
+  getPassingTime
+} from '../../../utilities/time';
 
 class DurationContainer extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { string }        isTimerActive       - It just string for title name.
+   *   @prop { boolean }       isTimerActive      - Is timer working or not.
+   *   @prop { number }        passingTime        - Between start time and stop time milisecond data.
+   *   @prop { object }        stopTime           - moment.js object.
+   *   @prop { object }        stopTime           - moment.js object.
+   *
    */
 
   constructor(props) {
@@ -39,24 +47,37 @@ class DurationContainer extends Component {
   _handleTimerOnStart = () => {
     const {
       isTimerActive,
+      passingTime,
       setIsTimerActive,
+      setPassingTime,
       setStartTime,
-      startTime
+      setStopTime,
+      stopTime,
+      stopTime
     } = this.props;
+
+    const now = getMoment();
 
     setIsTimerActive(!isTimerActive ? true : !isTimerActive);
 
-    // If there is no start time data if so user first clicked the play button.
-    // if (!startTime) {
-    // }
-    setStartTime(getMoment());
+    if (!stopTime && startTime) {
+      const _passingTime = getPassingTime(now, startTime) + passingTime;
+
+      setStopTime(now);
+      setPassingTime(_passingTime);
+    } else {
+      setStartTime(getMoment());
+      stopTime && setStopTime(null);
+    }
   };
 }
 
 function mapStateToProps(state) {
   return {
     isTimerActive: state.timer.isTimerActive,
-    startTime: state.timer.startTime
+    passingTime: state.timer.passingTime,
+    startTime: state.timer.startTime,
+    stopTime: state.timer.stopTime
   };
 }
 

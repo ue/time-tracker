@@ -23,6 +23,11 @@ export const getSeperatedTime = startTime => {
   };
 };
 
+export const getPassingTime = (stopTime, startTime) =>
+  moment(stopTime).diff(startTime);
+
+export const getDurationTime = passingTime => moment.duration(passingTime);
+
 const lengthCheck = val => val.toString().length;
 
 const makeDigits = val => (lengthCheck(val) < 2 ? `0${val}` : val);
