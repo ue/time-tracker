@@ -4,6 +4,7 @@ import { DurationView } from '../';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TimerActions from '../../../actions/timer';
+import { TimerView } from '../';
 
 // Utilities
 import {
@@ -12,7 +13,7 @@ import {
   getPassingTime
 } from '../../../utilities/time';
 
-class DurationContainer extends Component {
+class TimerContainer extends Component {
   /* Props
    * ------------------------------------------------
    *   @prop { boolean }       isTimerActive      - Is timer working or not.
@@ -33,43 +34,9 @@ class DurationContainer extends Component {
 
   /* Component Functions
    * ------------------------------------------------ */
-  _handleTimerOnStart = () => {
-    const {
-      isTimerActive,
-      passingTime,
-      setIsTimerActive,
-      setPassingTime,
-      setStartTime,
-      setStopTime,
-      stopTime,
-      startTime
-    } = this.props;
-
-    const now = getMoment();
-
-    setIsTimerActive(!isTimerActive ? true : !isTimerActive);
-
-    if (!stopTime && startTime) {
-      const _passingTime = getPassingTime(now, startTime) + passingTime;
-
-      setStopTime(now);
-      setPassingTime(_passingTime);
-    } else {
-      setStartTime(getMoment());
-      stopTime && setStopTime(null);
-    }
-  };
 
   render() {
-    const { isTimerActive } = this.props;
-
-    return (
-      <DurationView
-        handleTimerOnStart={this._handleTimerOnStart}
-        isTimerActive={isTimerActive}
-        {...this.props}
-      />
-    );
+    return <TimerView {...this.props} />;
   }
 }
 
@@ -89,4 +56,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DurationContainer);
+)(TimerContainer);

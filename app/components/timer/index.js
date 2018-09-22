@@ -1,4 +1,5 @@
-import Timer from './view/timerView';
+import TimerView from './view/timerView';
+import Timer from './container/timerContainer';
 
-export { Timer };
+export { Timer, TimerView };
 export default Timer;

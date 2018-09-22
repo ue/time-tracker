@@ -15,6 +15,7 @@ export default class TimerView extends Component {
 
     this.state = {
       startTime: props.startTime ? moment(props.startTime) : moment(),
+      passingTime: props.passingTime || 0,
       time: null,
       format: ''
     };
@@ -49,7 +50,8 @@ export default class TimerView extends Component {
   _incrementTimer() {
     this.timer = setTimeout(() => {
       const difference = moment().diff(this.state.startTime);
-      const format = difference >= 1000 * 60 * 60 ? 'H:mm:ss' : 'mm:ss';
+      const format =
+        difference >= 1000 * 60 * 60 ? 'HH' : difference >= 60000 ? 'mm' : 'ss';
       const time = moment.utc(difference).format(format);
 
       this.setState({
@@ -62,10 +64,12 @@ export default class TimerView extends Component {
   }
 
   _setFormat = format => {
-    if (format === 'HH:mm:ss') {
-      return 'H';
+    if (format === 'HH') {
+      return 'h';
+    } else if (format === 'mm') {
+      return 'm';
     }
-    return 'm';
+    return 's';
   };
 
   _getRenderItem = () => {

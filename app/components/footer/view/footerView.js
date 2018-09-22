@@ -8,8 +8,8 @@ import { Timer } from '../../timer';
 export default class FooterView extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { startTime }        obj          - Coming from moment current time.
-   *   @prop { passingTime }      number       - Passing time according to timer.
+   *   @prop { object }        startTime          - Coming from moment current time.
+   *   @prop { numer }      passingTime           - Passing time according to timer.
    *
    */
 
@@ -28,8 +28,7 @@ export default class FooterView extends Component {
     return (
       <div className="footer">
         <p className="passing-time">
-          Worked Today:{' '}
-          <Timer isTimerActive={isTimerActive} startTime={startTime} />
+          Worked Today: <Timer />
         </p>
         <p className="company-time">
           Company Time:{' '}

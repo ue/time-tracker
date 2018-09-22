@@ -11,8 +11,8 @@ export default (
   state = {
     passingTime: 0,
     isTimerActive: false,
-    startTime: 0,
-    stopTime: 0
+    startTime: null,
+    stopTime: null
   },
   action: Action
 ) => {
