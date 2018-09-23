@@ -38,15 +38,22 @@ class WidgetContainer extends Component {
   /* Component Functions
 * ------------------------------------------------ */
 
-  _getDuration = () => this.sync(ipcRenderer.sendSync('init', ''));
+  _getDuration = () => this.sync(ipcRenderer.sendSync('initial', ''));
 
   _handleTimerStatus = (event: any, arg: State) => {
-    const { isTimerActive } = this.state;
+    const { isTimerActive, startTime } = this.state;
+    const { duration, isRunning } = arg;
     this.sync(arg);
 
-    if (isTimerActive !== arg.running) {
-      this.setState({ isTimerActive: arg.running });
+    if (isTimerActive !== isRunning) {
+      this.setState({
+        isTimerActive: isRunning
+      });
     }
+
+    this.setState({
+      startTime: duration
+    });
   };
 
   sync = arg => {
@@ -71,10 +78,7 @@ class WidgetContainer extends Component {
 }
 function mapStateToProps(state) {
   return {
-    isTimerActive: state.timer.isTimerActive,
-    passingTime: state.timer.passingTime,
-    startTime: state.timer.startTime,
-    stopTime: state.timer.stopTime
+    isTimerActive: state.timer.isTimerActive
   };
 }
 

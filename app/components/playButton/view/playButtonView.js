@@ -9,8 +9,8 @@ import StopIcon from '../../../assets/images/stop.svg';
 export default class PlayButtonView extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { startTime }        obj          - Coming from moment current time.
-   *   @prop { passingTime }      number       - Passing time according to timer.
+   *   @prop { object }        startTime          - Coming from moment current time.
+   *   @prop { number }        passingTime       - Passing time according to timer.
    *
    */
 

@@ -41,13 +41,13 @@ class DurationContainer extends Component {
   _handleIpcListener = (event: any, arg: State) => {
     const { setIsTimerActive, isTimerActive } = this.props;
 
-    isTimerActive !== arg.running;
-    if (isTimerActive !== arg.running) {
-      !arg.running ? this._resetTime() : this._startTime();
-      setIsTimerActive(arg.running);
+    isTimerActive !== arg.isRunning;
+    if (isTimerActive !== arg.isRunning) {
+      !arg.isRunning ? this._resetTime() : this._startTime();
+      setIsTimerActive(arg.isRunning);
     }
   };
-  getDuration = () => this.setState(ipcRenderer.sendSync('init', ''));
+  getDuration = () => this.setState(ipcRenderer.sendSync('initial', ''));
 
   _handleTimerOnStart = () => {
     const {
@@ -84,10 +84,11 @@ class DurationContainer extends Component {
 
   _startTime = () => {
     const { setStartTime, setStopTime, stopTime } = this.props;
+    const now = getMoment();
 
-    setStartTime(getMoment());
-    ipcRenderer.send('start-time', getMoment());
-
+    setStartTime(now);
+    ipcRenderer.send('start-time', now);
+    // localStorage.setItem('start-time', now);
     stopTime && setStopTime(null);
   };
 

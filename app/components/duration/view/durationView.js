@@ -12,6 +12,7 @@ export default class DurationView extends Component {
    * ------------------------------------------------
    *   @prop { funtion }        handleTimerOnStart       - For handle when timer start.
    *   @prop { boolean }        isTimerActive            - Timer active information.
+   *   @prop { object }      startTime                   - moment js object.
    *
    */
 
@@ -68,7 +69,6 @@ export default class DurationView extends Component {
 
   _handlePlayButtonClicked = () => {
     const { handleTimerOnStart } = this.props;
-    // clearTimeout(this.timer);
     handleTimerOnStart();
   };
 

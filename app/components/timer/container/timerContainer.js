@@ -19,7 +19,7 @@ class TimerContainer extends Component {
    *   @prop { boolean }       isTimerActive      - Is timer working or not.
    *   @prop { number }        passingTime        - Between start time and stop time milliseconds data.
    *   @prop { object }        stopTime           - moment.js object.
-   *   @prop { object }        stopTime           - moment.js object.
+   *   @prop { object }        startTime           - moment.js object.
    *
    */
 

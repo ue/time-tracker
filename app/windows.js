@@ -27,12 +27,6 @@ export const createMainWindow = () => {
     windows.main = null;
   });
 
-  // ipc.on("ugur", function (event, arg) {
-  //   console.log(arg);
-  //   //do child process or other data manipulation and name it manData
-  //   event.sender.send(asd, manData);
-  // });
-
   const menuBuilder = new MenuBuilder();
   menuBuilder.buildMenu(main);
 

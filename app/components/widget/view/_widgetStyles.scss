@@ -16,6 +16,8 @@ body {
 
 .drag-icon {
   height: 14px;
+  // dragable enable
+   -webkit-app-region: drag;
 }
 
 .button {
@@ -58,10 +60,6 @@ body {
   align-items: center;
   margin-left: 7px;
 }
-.clearIconWrapper {
-  position: relative;
-  top: -2px;
-}
 .clear-icon {
   width: 7px;
   height: 7px;
@@ -70,7 +68,7 @@ body {
  .widget-duration {
   margin-left: 16px;
 
-    p {
+    span {
     color: $white-color;
     font-size: 12px;
     }

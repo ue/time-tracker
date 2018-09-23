@@ -23,6 +23,12 @@ export const getSeperatedTime = startTime => {
   };
 };
 
+export const getFormatedTime = value => {
+  const format = value >= 1000 * 60 * 60 ? 'H:mm' : 'mm:ss';
+
+  return !value ? '00:00' : moment.utc(value).format(format);
+};
+
 export const getPassingTime = (stopTime, startTime) =>
   moment(stopTime).diff(startTime);
 

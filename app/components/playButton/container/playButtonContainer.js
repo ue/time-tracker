@@ -7,7 +7,9 @@ import PlayButtonView from '../view/playButtonView';
 class PlayButtonContainer extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { string }        title       - It just string for title name.
+   *   @prop { string }        title              - It just string for title name.
+   *   @prop { boolean }      isTimerActive       - Timer active boleean data.
+   *
    */
 
   constructor(props) {
