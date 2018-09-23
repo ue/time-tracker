@@ -3,6 +3,9 @@
 @import "./variables/colors";
 @import "./variables/sizes";
 
+// Mixins
+@import "./mixins/sizes";
+
 // Layout
 @import "./core/global";
 
@@ -15,3 +18,4 @@
 @import "../../components/duration/view/duration";
 @import "../../components/playButton/view/playButton";
 @import "../../components/widget/view/widgetStyles";
+@import "../../components/digit/view/digitStyles";

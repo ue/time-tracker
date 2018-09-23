@@ -1,8 +1,8 @@
 .digit {
-  height: 40px;
-  width: 33px;
+  height: $digit-height;
+  width: $digit-width;
   background-color: $default-color;
-  border-radius: 5px;
+  border-radius: $border-radius;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,10 +10,10 @@
 
   span {
     color: $white-color;
-    font-size: 19pt;
+    font-size: $digit-font-size;
   }
 }
 
-.isDigitActive{
+.is-digit-active{
   background-color: $active-color;
 }

@@ -17,26 +17,7 @@
     color: $default-color;
   }
   
-  .isDividerActive {
+  .is-divider-active {
     color: $active-color;
   }
-}
-.digit {
-  height: $digit-height;
-  width: $digit-width;
-  background-color: $default-color;
-  border-radius: $border-radius;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 1px;
-
-  span {
-    color: $white-color;
-    font-size: $digit-font-size;
-  }
-}
-
-.isDigitActive{
-  background-color: $active-color;
 }

@@ -1,0 +1,5 @@
+@mixin play-button-size {
+  height: $play-button-height;
+  width: $play-button-width;
+  border-radius: $play-button-radius;
+}
