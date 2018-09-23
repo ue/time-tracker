@@ -1,13 +1,13 @@
 /* eslint class-methods-use-this: 0 */
 // @flow
-import { app, Menu, BrowserWindow } from "electron";
-import { createWidgetWindow } from "./windows";
+import { app, Menu, BrowserWindow } from 'electron';
+import { createWidgetWindow } from './windows';
 
 export default class MenuBuilder {
   buildMenu(window: BrowserWindow) {
     if (
-      process.env.NODE_ENV === "development" ||
-      process.env.DEBUG_PROD === "true"
+      process.env.NODE_ENV === 'development' ||
+      process.env.DEBUG_PROD === 'true'
     ) {
       this.setupDevelopmentEnvironment(window);
     }
@@ -21,12 +21,12 @@ export default class MenuBuilder {
 
   setupDevelopmentEnvironment(window: BrowserWindow) {
     window.openDevTools();
-    window.webContents.on("context-menu", (e, props) => {
+    window.webContents.on('context-menu', (e, props) => {
       const { x, y } = props;
 
       Menu.buildFromTemplate([
         {
-          label: "Inspect element",
+          label: 'Inspect element',
           click: () => {
             window.inspectElement(x, y);
           }
@@ -37,24 +37,23 @@ export default class MenuBuilder {
 
   buildTemplate() {
     const subMenuAbout = {
-      label: "Widget",
+      label: 'Widget',
       submenu: [
         {
-          label: "Show/Hide",
-          // selector: ":",
+          label: 'Widget',
           click: () => {
             const widget = createWidgetWindow();
             if (
-              process.env.NODE_ENV === "development" ||
-              process.env.DEBUG_PROD === "true"
+              process.env.NODE_ENV === 'development' ||
+              process.env.DEBUG_PROD === 'true'
             ) {
               this.setupDevelopmentEnvironment(widget);
             }
           }
         },
         {
-          label: "Quit",
-          accelerator: "Command+Q",
+          label: 'Quit',
+          accelerator: 'Command+Q',
           click: () => {
             app.quit();
           }

@@ -53,8 +53,6 @@ export const createWidgetWindow = () => {
     ...options
   });
   widget.loadURL(`file://${__dirname}/app.html#/widget`);
-  console.info('ugur');
-  console.info(`file://${__dirname}/app.html#/widget`);
   widget.on('closed', () => {
     windows.widget = null;
   });
