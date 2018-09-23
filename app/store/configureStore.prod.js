@@ -1,6 +1,7 @@
 // @flow
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import { electronEnhancer } from 'redux-electron-store';
 import { createHashHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
@@ -8,7 +9,10 @@ import type { timerStateType } from '../reducers/types';
 
 const history = createHashHistory();
 const router = routerMiddleware(history);
-const enhancer = applyMiddleware(thunk, router);
+const enhancer = compose(
+  applyMiddleware(thunk, router),
+  electronEnhancer(true)
+);
 
 function configureStore(initialState?: timerStateType) {
   return createStore(rootReducer, initialState, enhancer);

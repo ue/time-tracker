@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
 
-import { HeaderContainer } from '../../../components/header';
-import { FooterContainer } from '../../../components/footer';
 import { DurationContainer } from '../../../components/duration';
 
 export default class HomeView extends Component {

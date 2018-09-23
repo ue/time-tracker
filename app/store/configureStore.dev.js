@@ -49,6 +49,7 @@ const configureStore = (initialState?: timerStateType) => {
 
   // Apply Middleware & Compose Enhancers
   enhancers.push(applyMiddleware(...middleware));
+
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store

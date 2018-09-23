@@ -4,6 +4,7 @@ import { DurationView } from '../';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TimerActions from '../../../actions/timer';
+import { ipcRenderer, ipcMain } from 'electron';
 
 // Utilities
 import {
@@ -30,9 +31,24 @@ class DurationContainer extends Component {
 
   /* Life Cycle Functions
    * ------------------------------------------------ */
-
+  componentDidMount() {
+    ipcRenderer.on('timer-status', this.handleIpcListener);
+    this.getDuration();
+  }
   /* Component Functions
    * ------------------------------------------------ */
+
+  handleIpcListener = (event: any, arg: State) => {
+    const { setIsTimerActive, isTimerActive } = this.props;
+
+    isTimerActive !== arg.running;
+    if (isTimerActive !== arg.running) {
+      !arg.running ? this._resetTime() : this._startTime();
+      setIsTimerActive(arg.running);
+    }
+  };
+  getDuration = () => this.setState(ipcRenderer.sendSync('init', ''));
+
   _handleTimerOnStart = () => {
     const {
       isTimerActive,
@@ -48,16 +64,29 @@ class DurationContainer extends Component {
     const now = getMoment();
 
     setIsTimerActive(!isTimerActive ? true : !isTimerActive);
+    ipcRenderer.send('timer-status');
 
     if (!stopTime && startTime) {
-      const _passingTime = getPassingTime(now, startTime) + passingTime;
-
-      setStopTime(now);
-      setPassingTime(_passingTime);
+      this._resetTime();
     } else {
-      setStartTime(getMoment());
-      stopTime && setStopTime(null);
+      this._startTime();
     }
+  };
+
+  _resetTime = () => {
+    const { passingTime, setPassingTime, setStopTime, startTime } = this.props;
+    const now = getMoment();
+    const _passingTime = getPassingTime(now, startTime) + passingTime;
+
+    setStopTime(now);
+    setPassingTime(_passingTime);
+  };
+
+  _startTime = () => {
+    const { setStartTime, setStopTime, stopTime } = this.props;
+
+    setStartTime(getMoment());
+    stopTime && setStopTime(null);
   };
 
   render() {

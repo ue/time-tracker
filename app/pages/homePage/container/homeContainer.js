@@ -1,11 +1,13 @@
 /*eslint-disable*/
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { HomeView } from '../';
+import { Header } from '../../../components/header';
+import { Footer } from '../../../components/footer';
 
 export default class HomeContainer extends Component {
   /* Props
    * ------------------------------------------------
-   *   @prop { string }        title       - It just string for title name.
+   *   @prop { type }        value       - description.
    */
 
   constructor(props) {
@@ -18,7 +20,14 @@ export default class HomeContainer extends Component {
    * ------------------------------------------------ */
 
   render() {
-    return <HomeView {...this.props} />;
+    // Note: Header and footer should not be here them using with routing side.
+    return (
+      <Fragment>
+        <Header title="Time Doctor" />
+        <HomeView {...this.props} />
+        <Footer />
+      </Fragment>
+    );
   }
 
   /* Component Functions

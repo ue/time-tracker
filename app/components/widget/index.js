@@ -1,5 +1,4 @@
-import WidgetView from './view/widgetView';
-import Widget from './container/widgetContainer';
+import Widget from './view/widgetView';
 
-export { WidgetView, Widget };
+export { Widget };
 export default Widget;

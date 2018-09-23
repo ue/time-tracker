@@ -1,5 +1,5 @@
 // @flow
-import { BrowserWindow, remote } from 'electron';
+import { BrowserWindow, remote, screen } from 'electron';
 import MenuBuilder from './menu';
 
 export type Windows = { [key: string]: BrowserWindow };
@@ -27,6 +27,12 @@ export const createMainWindow = () => {
     windows.main = null;
   });
 
+  // ipc.on("ugur", function (event, arg) {
+  //   console.log(arg);
+  //   //do child process or other data manipulation and name it manData
+  //   event.sender.send(asd, manData);
+  // });
+
   const menuBuilder = new MenuBuilder();
   menuBuilder.buildMenu(main);
 
@@ -35,22 +41,22 @@ export const createMainWindow = () => {
 };
 
 export const createWidgetWindow = () => {
+  const screenSize = screen.getPrimaryDisplay();
+
   if (!windows.main) return;
-  const mainPos = windows.main.getPosition();
-  const mainSize = windows.main.getSize();
   const options = {
-    width: 145,
-    height: 35,
+    alwaysOnTop: true,
+    x: screenSize.width - 100,
+    y: screenSize.height - 100,
+    backgroundColor: '#34495e',
     frame: false,
+    height: 35,
     movable: true,
     resizable: false,
-    alwaysOnTop: true,
-    backgroundColor: '#2b405b'
+    width: 145
   };
   const widget = new BrowserWindow({
-    ...options,
-    x: mainPos[0] + mainSize[0] - options.width,
-    y: mainPos[1] + mainSize[1]
+    ...options
   });
   widget.loadURL(`file://${__dirname}/app.html#/widget`);
   console.info('ugur');

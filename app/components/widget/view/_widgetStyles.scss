@@ -1,4 +1,7 @@
-.container {
+body {
+  overflow: hidden;
+}
+.widget-wrapper {
   margin: 0;
   background-color: $medium-blue-color;
   height: 36px;
@@ -10,11 +13,8 @@
   padding: 0 8px;
   border-radius: 3px;
 }
-.dragIconWrapper {
-  position: relative;
-  top: 2px;
-}
-.dragIcon {
+
+.drag-icon {
   height: 14px;
 }
 
@@ -29,20 +29,22 @@
   align-items: center;
   margin-left: 9px;
 }
-.buttonIconWrapper {
-  position: relative;
-  top: -2px;
-}
-.buttonIcon {
+
+.button-icon {
  width: 8px;
  height: 8px;
 }
 
-.on {
+.status {
   width: 6px;
   height: 6px;
   border-radius: 6px;
   margin-left: 4px;
+  background-color: #10223a;
+}
+
+.stoped {
+  background-color: #60be72;
 }
 
 .clear {
@@ -60,15 +62,16 @@
   position: relative;
   top: -2px;
 }
-.clearIcon {
+.clear-icon {
   width: 7px;
   height: 7px;
  }
 
- .duration {
+ .widget-duration {
   margin-left: 16px;
- }
- .duration p {
-   color: $white-color;
-   font-size: 12px;
+
+    p {
+    color: $white-color;
+    font-size: 12px;
+    }
  }
