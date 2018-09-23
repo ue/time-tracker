@@ -32,13 +32,13 @@ class DurationContainer extends Component {
   /* Life Cycle Functions
    * ------------------------------------------------ */
   componentDidMount() {
-    ipcRenderer.on('timer-status', this.handleIpcListener);
+    ipcRenderer.on('timer-status', this._handleIpcListener);
     this.getDuration();
   }
   /* Component Functions
    * ------------------------------------------------ */
 
-  handleIpcListener = (event: any, arg: State) => {
+  _handleIpcListener = (event: any, arg: State) => {
     const { setIsTimerActive, isTimerActive } = this.props;
 
     isTimerActive !== arg.running;
@@ -86,6 +86,8 @@ class DurationContainer extends Component {
     const { setStartTime, setStopTime, stopTime } = this.props;
 
     setStartTime(getMoment());
+    ipcRenderer.send('start-time', getMoment());
+
     stopTime && setStopTime(null);
   };
 

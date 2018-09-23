@@ -57,12 +57,13 @@ class WidgetContainer extends Component {
   _handleOnClearClick = () => closeWindow();
 
   render() {
-    const { isTimerActive } = this.state;
+    const { isTimerActive, startTime } = this.state;
 
     return (
       <WidgetPage
         handleOnPlayClick={() => this._handleOnPlayClick()}
         handleOnClearClick={() => this._handleOnClearClick()}
+        startTime={startTime}
         isTimerActive={isTimerActive}
       />
     );

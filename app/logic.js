@@ -1,17 +1,19 @@
 /* eslint import/prefer-default-export: 0, no-unused-expressions: 0, no-param-reassign: 0 */
-// @flow
 
 import { ipcMain } from 'electron';
 import moment from 'moment';
-import { prop, last, groupWith, compose, filter, length, reduce } from 'ramda';
+import { prop, last } from 'ramda';
 import { windows } from './windows';
-
+// ipcMain.on('start-time', (event, value) => {
+//   console.log(`@@@@@${value}`);
+// });
 const workLogs = [];
 let tickInterval = null;
 
 export const setupStartStop = () => {
   ipcMain.on('init', handleInit);
   ipcMain.on('timer-status', handleStartStop);
+  // ipcMain.on('start-time', ugur);
 };
 
 const isRunning = () => prop('running', last(workLogs) || {});
@@ -48,10 +50,4 @@ const startTick = () => {
 const tick = () => notifyWindows({ running: true, duration: getDuration() });
 
 export const getDuration = () =>
-  compose(
-    reduce((acc, paired) => acc + paired[1].date - paired[0].date, 0),
-    filter(log => length(log) === 2),
-    groupWith((log1, log2) => log1.running && !log2.running),
-    logs =>
-      isRunning() ? [...logs, { running: false, date: moment.now() }] : logs
-  )(workLogs);
+  ipcMain.on('start-time', (event, value) => value);
